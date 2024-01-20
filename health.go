@@ -5,45 +5,46 @@
 package electricitymaps
 
 import (
-	"bufio"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 )
 
-type Monitor struct {
-	State string `json:"state"`
+type Monitors struct {
+	State string
 }
 
 // response to "health"
 // https://static.electricitymaps.com/api/docs/index.html#health
 type Health struct {
-	Monitors []Monitor
-	Status   string `json:"status"`
+	Monitors Monitors
+	Status   string
 }
 
-func GetHealth() (int, error) {
+func GetHealth() (Health, error) {
 
 	const HOST = "https://api.electricitymap.org/"
 	const HEALTH = "health"
+	health := Health{}
 
 	resp, err := http.Get(HOST + HEALTH)
 	if err != nil {
-		return 0, err
+		return health, err
 	}
 
 	content_type := resp.Header.Get("content-type")
 	if content_type != "application/json; charset=utf-8" {
-		return 0, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
+		return health, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
 	}
 
 	defer resp.Body.Close()
-	scanner := bufio.NewScanner(resp.Body)
-	for scanner.Scan() {
-		println(scanner.Text())
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return health, err
 	}
-	if err := scanner.Err(); err != nil {
-		return 0, err
-	}
-	return resp.StatusCode, nil
+
+	err = json.Unmarshal(body, &health)
+	return health, nil
 
 }

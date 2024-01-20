@@ -1,15 +1,15 @@
 package electricitymaps
 
 import (
-	"net/http"
 	"testing"
 
 	"gotest.tools/v3/assert"
 )
 
 func TestGetHealth(t *testing.T) {
-	want := http.StatusOK
+	want := Health{Monitors: Monitors{State: "ok"}, Status: "ok"}
 	got, err := GetHealth()
 	assert.NilError(t, err)
 	assert.Equal(t, got, want)
+	println("health", got.Monitors.State, got.Status)
 }
