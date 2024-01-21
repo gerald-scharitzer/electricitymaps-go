@@ -11,22 +11,20 @@ import (
 	"net/http"
 )
 
-type Monitors struct {
-	State string
+type Zone struct {
+	Country string `json:"countryName"`
+	Name    string `json:"zoneName"`
 }
 
 // response
-type Health struct {
-	Monitors Monitors
-	Status   string
-}
+type Zones map[string]Zone
 
-// https://static.electricitymaps.com/api/docs/index.html#health
-func GetHealth() (*Health, error) {
+// https://static.electricitymaps.com/api/docs/index.html#zones
+func GetZones() (*Zones, error) {
 
 	const HOST = "https://api.electricitymap.org/"
 
-	resp, err := http.Get(HOST + "health")
+	resp, err := http.Get(HOST + "v3/zones")
 	if err != nil {
 		return nil, err
 	}
@@ -42,8 +40,8 @@ func GetHealth() (*Health, error) {
 		return nil, err
 	}
 
-	health := Health{}
-	err = json.Unmarshal(body, &health)
-	return &health, nil
+	zones := Zones{}
+	err = json.Unmarshal(body, &zones)
+	return &zones, nil
 
 }
