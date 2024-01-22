@@ -13,6 +13,6 @@ func TestGetZones(t *testing.T) {
 	for id, zone := range *zones {
 		assert.Assert(t, len(id) > 0)
 		assert.Assert(t, len(zone.Name) > 0)
-		println(id, zone.Country, zone.Name)
+		// TODO replace with log: println(id, zone.Country, zone.Name)
 	}
 }

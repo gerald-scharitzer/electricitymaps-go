@@ -22,9 +22,9 @@ type Zones map[string]Zone
 // https://static.electricitymaps.com/api/docs/index.html#zones
 func GetZones() (*Zones, error) {
 
-	const HOST = "https://api.electricitymap.org/"
+	const host = "https://api.electricitymap.org/"
 
-	resp, err := http.Get(HOST + "v3/zones")
+	resp, err := http.Get(host + "v3/zones")
 	if err != nil {
 		return nil, err
 	}

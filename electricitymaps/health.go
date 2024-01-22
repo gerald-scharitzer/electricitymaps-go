@@ -24,9 +24,9 @@ type Health struct {
 // https://static.electricitymaps.com/api/docs/index.html#health
 func GetHealth() (*Health, error) {
 
-	const HOST = "https://api.electricitymap.org/"
+	const host = "https://api.electricitymap.org/"
 
-	resp, err := http.Get(HOST + "health")
+	resp, err := http.Get(host + "health")
 	if err != nil {
 		return nil, err
 	}

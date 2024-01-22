@@ -13,20 +13,20 @@ func TestGetSession(t *testing.T) {
 	assert.Equal(t, got, want)
 }
 
-const YAML = `
+const sessionYaml = `
 authtoken: test
 `
 
 func TestGetSessionFromYaml(t *testing.T) {
 	want := Session{AuthToken: "test"}
-	got, err := GetSessionFromYaml([]byte(YAML))
+	got, err := GetSessionFromYaml([]byte(sessionYaml))
 	assert.NilError(t, err)
 	assert.Equal(t, *got, want)
 }
 
 func TestGetSessionFromFile(t *testing.T) {
 	want := Session{AuthToken: "test"}
-	file, err := os.Open("session.yaml")
+	file, err := os.Open("../session.yaml")
 	assert.NilError(t, err)
 	got, err := GetSessionFromFile(file)
 	assert.NilError(t, err)
