@@ -7,7 +7,8 @@ import (
 )
 
 func TestGetZones(t *testing.T) {
-	zones, err := GetZones()
+	apiRoot := "https://api.electricitymap.org/"
+	zones, err := GetZones(&apiRoot)
 	assert.NilError(t, err)
 	assert.Assert(t, len(*zones) > 0)
 	for id, zone := range *zones {

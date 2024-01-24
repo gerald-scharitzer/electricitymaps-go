@@ -14,18 +14,19 @@ func TestGetSession(t *testing.T) {
 }
 
 const sessionYaml = `
-authtoken: test
+apiRoot: https://api.electricitymap.org/
+authToken: test
 `
 
 func TestGetSessionFromYaml(t *testing.T) {
-	want := Session{AuthToken: "test"}
+	want := Session{ApiRoot: "https://api.electricitymap.org/", AuthToken: "test"}
 	got, err := GetSessionFromYaml([]byte(sessionYaml))
 	assert.NilError(t, err)
 	assert.Equal(t, *got, want)
 }
 
 func TestGetSessionFromFile(t *testing.T) {
-	want := Session{AuthToken: "test"}
+	want := Session{ApiRoot: "https://api.electricitymap.org/", AuthToken: "test"}
 	file, err := os.Open("../session.yaml")
 	assert.NilError(t, err)
 	got, err := GetSessionFromFile(file)

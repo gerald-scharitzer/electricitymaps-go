@@ -20,11 +20,9 @@ type Zone struct {
 type Zones map[string]Zone
 
 // https://static.electricitymaps.com/api/docs/index.html#zones
-func GetZones() (*Zones, error) {
+func GetZones(apiRoot *string) (*Zones, error) {
 
-	const host = "https://api.electricitymap.org/"
-
-	resp, err := http.Get(host + "v3/zones")
+	resp, err := http.Get(*apiRoot + "v3/zones")
 	if err != nil {
 		return nil, err
 	}

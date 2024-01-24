@@ -32,5 +32,6 @@ func main() {
 		println(Usage)
 		return
 	}
+	println("apiRoot", session.ApiRoot)
 	println(len(session.AuthToken) > 0)
 }

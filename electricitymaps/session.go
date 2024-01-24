@@ -8,7 +8,9 @@ import (
 )
 
 type Session struct {
-	AuthToken string // protect this
+	// URL root of the web API
+	ApiRoot   string `yaml:"apiRoot"`
+	AuthToken string `yaml:"authToken"` // protect this
 }
 
 func GetSession() Session {
