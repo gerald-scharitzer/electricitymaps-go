@@ -1,4 +1,4 @@
-package electricitymaps
+package electromap
 
 import (
 	"testing"

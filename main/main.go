@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	em "gopkg.in/electricitymaps.v0/electricitymaps"
+	em "gopkg.in/electromap.v0/electromap"
 )
 
 const Usage = `Usage: go run package [-]

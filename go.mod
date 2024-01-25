@@ -1,4 +1,4 @@
-module gopkg.in/electricitymaps.v0
+module gopkg.in/electromap.v0
 
 go 1.21.1
 
