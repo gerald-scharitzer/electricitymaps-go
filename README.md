@@ -10,6 +10,7 @@ is a Go client for the [Electricity Maps API](https://static.electricitymaps.com
 4. Run with `go run ./main`
 5. Tag with `git tag semver`
 6. Push with `git push origin semver`
-7. Publish with `GOPROXY=proxy.golang.org go list -m gopkg.in/gerald-scharitzer/electromap@semver`
+7. Publish with `GOPROXY=proxy.golang.org go list -m gopkg.in/gerald-scharitzer/electromap.vn@semver`
 
-where `semver` is the semantic version (e.g. v0.0.0)
+where `semver` is the [semantic version](https://semver.org/spec/v2.0.0.html) (e.g. v0.0.0)
+and `vn` is the major version number (e.g. v0)
