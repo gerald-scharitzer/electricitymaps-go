@@ -1,7 +1,3 @@
-// Get carbon efficiency data from electricity maps
-// https://api-portal.electricitymaps.com/
-// https://static.electricitymaps.com/api/docs/index.html
-// https://www.electricitymaps.com/data-portal
 package electromap
 
 import (
@@ -16,11 +12,23 @@ type Zone struct {
 	Name    string `json:"zoneName"`
 }
 
-// response
+// The API response is a map of zone keys to zone values
 type Zones map[string]Zone
 
+// Get the map of zones
+//
+// `apiRoot` points to the target of the API call.
+// `nil` calls the API pointed to by `ApiRootDefault`.
+//
+// # TODO add parameter authToken
+//
 // https://static.electricitymaps.com/api/docs/index.html#zones
 func GetZones(apiRoot *string) (*Zones, error) {
+
+	if apiRoot == nil { // get default
+		apiRootDefault := ApiRootDefault // get addressable variable
+		apiRoot = &apiRootDefault
+	}
 
 	resp, err := http.Get(*apiRoot + "v3/zones")
 	if err != nil {

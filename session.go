@@ -13,6 +13,9 @@ type Session struct {
 	AuthToken string `yaml:"authToken"` // protect this
 }
 
+// Default API target
+const ApiRootDefault string = "https://api.electricitymap.org/"
+
 func GetSession() Session {
 	return Session{}
 }
