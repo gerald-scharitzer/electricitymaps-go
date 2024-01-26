@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	em "gopkg.in/gerald-scharitzer/electromap.v0/electromap"
+	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
 
 const Usage = `Usage: go run package [-]

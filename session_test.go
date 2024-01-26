@@ -27,7 +27,7 @@ func TestGetSessionFromYaml(t *testing.T) {
 
 func TestGetSessionFromFile(t *testing.T) {
 	want := Session{ApiRoot: "https://api.electricitymap.org/", AuthToken: "test"}
-	file, err := os.Open("../session.yaml")
+	file, err := os.Open("session.yaml")
 	assert.NilError(t, err)
 	got, err := GetSessionFromFile(file)
 	assert.NilError(t, err)
