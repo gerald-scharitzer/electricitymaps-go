@@ -8,6 +8,7 @@ import (
 )
 
 type Zone struct {
+	// Not every zone is mapped to a country.
 	Country string `json:"countryName"`
 	Name    string `json:"zoneName"`
 }
@@ -21,6 +22,8 @@ type Zones map[string]Zone
 // `nil` calls the API pointed to by `ApiRootDefault`.
 //
 // # TODO add parameter authToken
+//
+// # Returns the map of zones or an error
 //
 // https://static.electricitymaps.com/api/docs/index.html#zones
 func GetZones(apiRoot *string) (*Zones, error) {
