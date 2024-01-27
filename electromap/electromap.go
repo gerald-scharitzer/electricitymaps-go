@@ -1,35 +1,73 @@
 package main
 
 import (
-	"os"
+	"flag"
 
 	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
 
-const Usage = `Usage: electromap [-]
+const (
+	usageHead = `Usage: electromap [-h] [{ health | help | zones }] [-]`
+	usageTail = `  -     process standard input
+  health
+        print the API health
+  help  print the command help
+  zones
+        print the zones`
+)
 
-"-" processes standard input.`
+func usage() {
+	println(usageHead)
+	flag.PrintDefaults()
+	println(usageTail)
+}
 
 func main() {
-	var session em.Session
-	switch len(os.Args) {
-	case 1:
-		session = em.GetSession()
-	case 2:
-		if os.Args[1] == "-" {
-			sessionp, err := em.GetSessionFromStdin()
-			if err != nil {
-				panic(err.Error())
+	flag.Usage = usage
+	var format = flag.String("f", "", `format output as: csv`)
+	var hFlag = flag.Bool("h", false, "print the command help")
+	flag.Parse()
+	if *hFlag {
+		usage()
+	}
+
+	// TODO var session em.Session
+	switch flag.Arg(0) {
+	case "":
+		// TODO session = em.GetSession()
+	case "-": // TODO
+		// sessionp, err := em.GetSessionFromStdin()
+		// if err != nil {
+		// 	panic(err.Error())
+		// }
+		// session = *sessionp
+	case "health":
+		health, err := em.GetHealth(nil)
+		if err != nil {
+			panic(err.Error())
+		}
+		println(health.Monitors.State, health.Status)
+	case "help":
+		usage()
+	case "zones":
+		zones, err := em.GetZones(nil)
+		if err != nil {
+			panic(err.Error())
+		}
+		if *format == "csv" { // TODO use encoding/csv
+			println("Key, Country, Name")
+		}
+		for key, zone := range *zones {
+			if *format == "csv" { // TODO use encoding/csv
+				println("\"", key, "\",\"", zone.Country, "\",\"", zone.Name, "\"")
+			} else {
+				println(key, zone.Country, zone.Name)
 			}
-			session = *sessionp
-		} else {
-			println(Usage)
-			return
 		}
 	default:
-		println(Usage)
+		usage()
 		return
 	}
-	println("apiRoot", session.ApiRoot)
-	println(len(session.AuthToken) > 0)
+	// TODO println("apiRoot", session.ApiRoot)
+	// TODO println(len(session.AuthToken) > 0)
 }

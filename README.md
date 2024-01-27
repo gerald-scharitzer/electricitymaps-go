@@ -1,6 +1,19 @@
-# Electromap Go
+# Electromap Go ⚡
 
-is a Go client for the [Electricity Maps API](https://static.electricitymaps.com/api/docs/index.html) as module `gopkg.in/gerald-scharitzer/electromap`.
+is a Go client for the [Electricity Maps API](https://static.electricitymaps.com/api/docs/index.html)
+as module [`gopkg.in/gerald-scharitzer/electromap`](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0).
+
+# Use
+
+the binary as command line interface with `electromap`. Get help for that with `electromap -h`.
+
+Use the Go API by importing the module.
+
+```
+import (
+    em "gopkg.in/gerald-scharitzer/electromap.v0"
+)
+```
 
 # Develop
 
