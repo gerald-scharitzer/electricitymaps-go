@@ -8,8 +8,18 @@ import (
 
 func TestGetHealth(t *testing.T) {
 	want := Health{Monitors: Monitors{State: "ok"}, Status: "ok"}
-	got, err := GetHealth(nil) // TODO parameterize apiRoot
-	assert.NilError(t, err)
-	assert.Equal(t, *got, want)
-	println("health", got.Monitors.State, got.Status)
+	apiRootDefault := ApiRootDefault
+	apiRoots := []*string{nil, &apiRootDefault}
+	for _, apiRoot := range apiRoots {
+		got, err := GetHealth(apiRoot)
+		assert.NilError(t, err)
+		assert.Equal(t, *got, want)
+		var name string
+		if apiRoot == nil {
+			name = "nil"
+		} else {
+			name = *apiRoot
+		}
+		t.Log(name, got.Monitors.State, got.Status)
+	}
 }

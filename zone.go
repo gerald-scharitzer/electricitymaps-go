@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+// Zones that are countries have a zone name, but not country name.
+// There are zones that belong to countries, but have no country name.
 type Zone struct {
 	// Not every zone is mapped to a country.
 	Country string `json:"countryName"`
