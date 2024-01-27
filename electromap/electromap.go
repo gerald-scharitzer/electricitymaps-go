@@ -6,9 +6,7 @@ import (
 	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
 
-const Usage = `Usage: go run package [-]
-
-"package" is the main package of this module.
+const Usage = `Usage: electromap [-]
 
 "-" processes standard input.`
 
