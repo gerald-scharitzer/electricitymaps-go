@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/csv"
 	"flag"
+	"os"
 
 	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
@@ -54,12 +56,25 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		}
-		if *format == "csv" { // TODO use encoding/csv
-			println("Key, Country, Name")
+		var csvWriter *csv.Writer
+		if *format == "csv" {
+			csvWriter = csv.NewWriter(os.Stdout)
+			err = csvWriter.Write([]string{"Key", "Country", "Name"})
+			if err != nil {
+				panic(err.Error())
+			}
 		}
 		for key, zone := range *zones {
-			if *format == "csv" { // TODO use encoding/csv
-				println("\"", key, "\",\"", zone.Country, "\",\"", zone.Name, "\"")
+			if *format == "csv" {
+				err = csvWriter.Write([]string{key, zone.Country, zone.Name})
+				if err != nil {
+					panic(err.Error())
+				}
+				csvWriter.Flush()
+				err = csvWriter.Error()
+				if err != nil {
+					panic(err.Error())
+				}
 			} else {
 				println(key, zone.Country, zone.Name)
 			}

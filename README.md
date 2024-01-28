@@ -3,7 +3,7 @@
 is a Go client for the [Electricity Maps API](https://static.electricitymaps.com/api/docs/index.html)
 as module [`gopkg.in/gerald-scharitzer/electromap`](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0).
 
-# Use
+# Use 🔌
 
 the binary as command line interface with `electromap`. Get help for that with `electromap -h`.
 
@@ -15,7 +15,7 @@ import (
 )
 ```
 
-# Develop
+# Develop 🚀
 
  1. Get with `git clone https://github.com/gerald-scharitzer/electromap.git`
  2. Enter with `cd electromap`
@@ -31,3 +31,7 @@ import (
 
 where `semver` is the [semantic version](https://semver.org/spec/v2.0.0.html) (e.g. v0.0.0)
 and `vn` is the major version number (e.g. v0)
+
+# Todo 🚨
+
+- Replace `print` and `println`
