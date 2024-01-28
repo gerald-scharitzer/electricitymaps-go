@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/csv"
 	"flag"
+	"fmt"
 	"os"
 
 	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
 
 const (
-	usageHead = `Usage: electromap [-h] [{ health | help | version | zones }] [-]`
+	usageHead = `Usage: electromap [-f format] [-h] [-v] [{ health | help | version | zones }] [-]`
 	usageTail = `  -     process standard input
   health
         print the API health
@@ -21,18 +22,35 @@ const (
 )
 
 func usage() {
-	println(usageHead)
+	_, err := fmt.Println(usageHead)
+	if err != nil {
+		panic(err.Error())
+	}
 	flag.PrintDefaults()
-	println(usageTail)
+	_, err = fmt.Println(usageTail)
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
+func version() {
+	_, err := fmt.Println(em.VersionString())
+	if err != nil {
+		panic(err.Error())
+	}
 }
 
 func main() {
 	flag.Usage = usage
 	var format = flag.String("f", "", `format output as: csv`)
 	var hFlag = flag.Bool("h", false, "print the command help")
+	var vFlag = flag.Bool("v", false, "print the module version")
 	flag.Parse()
 	if *hFlag {
 		usage()
+	}
+	if *vFlag {
+		version()
 	}
 
 	// TODO var session em.Session
@@ -50,11 +68,14 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		}
-		println(health.Monitors.State, health.Status)
+		_, err = fmt.Println(health.Monitors.State, health.Status)
+		if err != nil {
+			panic(err.Error())
+		}
 	case "help":
 		usage()
 	case "version":
-		println(em.VersionString())
+		version()
 	case "zones":
 		zones, err := em.GetZones(nil)
 		if err != nil {
@@ -80,13 +101,16 @@ func main() {
 					panic(err.Error())
 				}
 			} else {
-				println(key, zone.Country, zone.Name)
+				_, err = fmt.Println(key, zone.Country, zone.Name)
+				if err != nil {
+					panic(err.Error())
+				}
 			}
 		}
 	default:
 		usage()
 		return
 	}
-	// TODO println("apiRoot", session.ApiRoot)
-	// TODO println(len(session.AuthToken) > 0)
+	// TODO fmt.Println("apiRoot", session.ApiRoot)
+	// TODO fmt.Println(len(session.AuthToken) > 0)
 }

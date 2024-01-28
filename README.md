@@ -24,17 +24,25 @@ import (
  3. Increase version in [doc.go#Version](doc.go#Version)
  4. Test with `go test ./...`
  5. Run with `go run ./electromap`
- 6. Build with `go build ./...`
- 7. Install with `go install ./...`
- 8. Run with `GOBIN/electromap` where `GOBIN` is the path to your installed Go binaries
- 9. Tag with `git tag semver`
-10. Push with `git push origin semver`
-11. Publish with `GOPROXY=proxy.golang.org go list -m gopkg.in/gerald-scharitzer/electromap.vn@semver`
-12. Uninstall with `go clean -i ./...`
+ 6. Check with `go vet ./...`
+ 7. Build with `go build ./...`
+ 8. Install with `go install ./...`
+ 9. Run with `GOBIN/electromap -v` where `GOBIN` is the path to your installed Go binaries to get the version string
+10. Tag with `git tag semver`
+11. Push with `git push origin semver`
+12. Publish with `GOPROXY=proxy.golang.org go list -m gopkg.in/gerald-scharitzer/electromap.vn@semver`
+13. Uninstall with `go clean -i ./...`
 
 where `semver` is the [semantic version](https://semver.org/spec/v2.0.0.html) (e.g. v0.0.0)
 and `vn` is the major version number (e.g. v0)
 
+## Rules
+
+- Use `fmt.Println` instead of `println`, because [`println`](https://pkg.go.dev/builtin@go1.21.6#println)
+is implementation-specific and not guaranteed to stay in the language
+- Use `fmt.Print` instead of `print`, because [`print`](https://pkg.go.dev/builtin@go1.21.6#print)
+is implementation-specific and not guaranteed to stay in the language
+
 # Todo 🚨
 
-- Replace `print` and `println`
+- Set exit code
