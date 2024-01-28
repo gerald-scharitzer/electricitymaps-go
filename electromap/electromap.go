@@ -9,11 +9,13 @@ import (
 )
 
 const (
-	usageHead = `Usage: electromap [-h] [{ health | help | zones }] [-]`
+	usageHead = `Usage: electromap [-h] [{ health | help | version | zones }] [-]`
 	usageTail = `  -     process standard input
   health
         print the API health
   help  print the command help
+  version
+        print the module version
   zones
         print the zones`
 )
@@ -51,6 +53,8 @@ func main() {
 		println(health.Monitors.State, health.Status)
 	case "help":
 		usage()
+	case "version":
+		println(em.VersionString())
 	case "zones":
 		zones, err := em.GetZones(nil)
 		if err != nil {
