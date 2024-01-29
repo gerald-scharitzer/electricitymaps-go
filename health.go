@@ -1,6 +1,7 @@
 package electromap
 
 import (
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -57,4 +58,23 @@ func GetHealth(apiRoot *string) (*Health, error) {
 	err = json.Unmarshal(body, &health)
 	return &health, nil
 
+}
+
+// Get comma-separated values
+func (health *Health) Csv(writer io.Writer) error {
+	csvWriter := csv.NewWriter(writer)                  // TODO reuse csvWriter
+	err := csvWriter.Write([]string{"State", "Status"}) // TODO make optional
+	if err != nil {
+		return err
+	}
+	err = csvWriter.Write([]string{health.Monitors.State, health.Status})
+	if err != nil {
+		return err
+	}
+	csvWriter.Flush()
+	err = csvWriter.Error()
+	if err != nil {
+		return err
+	}
+	return nil
 }

@@ -5,6 +5,12 @@ as module [`gopkg.in/gerald-scharitzer/electromap.v0`](https://pkg.go.dev/gopkg.
 
 [![Go Reference](https://pkg.go.dev/badge/gopkg.in/gerald-scharitzer/electromap.v0.svg)](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0)
 
+# Features ✨
+
+Provide a command line interface (CLI) and a Go application programming interface (API) for the web API of Electricity Maps.
+
+Format JSON responses as CSV tables.
+
 # Use 🔌
 
 the binary as command line interface with `electromap`. Get help for that with `electromap -h`.
@@ -39,10 +45,6 @@ and `vn` is the major version number (e.g. v0)
 ## Rules
 
 - Use `fmt.Println` instead of `println`, because [`println`](https://pkg.go.dev/builtin@go1.21.6#println)
-is implementation-specific and not guaranteed to stay in the language
+is implementation-specific and not guaranteed to stay in the language.
 - Use `fmt.Print` instead of `print`, because [`print`](https://pkg.go.dev/builtin@go1.21.6#print)
-is implementation-specific and not guaranteed to stay in the language
-
-# Todo 🚨
-
-- Set exit code
+is implementation-specific and not guaranteed to stay in the language.

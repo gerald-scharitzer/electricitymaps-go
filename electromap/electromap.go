@@ -40,7 +40,7 @@ func version() {
 	}
 }
 
-func main() {
+func main() { // TODO set exit code
 	flag.Usage = usage
 	var format = flag.String("f", "", `format output as: csv`)
 	var hFlag = flag.Bool("h", false, "print the command help")

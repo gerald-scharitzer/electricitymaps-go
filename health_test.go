@@ -1,6 +1,7 @@
 package electromap
 
 import (
+	"os"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -22,4 +23,10 @@ func TestGetHealth(t *testing.T) {
 		}
 		t.Log(name, got.Monitors.State, got.Status)
 	}
+}
+
+func TestCsv(t *testing.T) {
+	health := Health{Monitors: Monitors{State: "ok"}, Status: "ok"}
+	err := health.Csv(os.Stdout) // TODO write to log
+	assert.NilError(t, err)      // TODO test values
 }
