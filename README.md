@@ -1,7 +1,12 @@
 # Electromap Go ⚡
 
-is a Go client for the [Electricity Maps API](https://static.electricitymaps.com/api/docs/index.html)
-as module [`gopkg.in/gerald-scharitzer/electromap.v0`](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0).
+gets data on the carbon efficiency of the electric grid.
+
+It is a Go client (module [`gopkg.in/gerald-scharitzer/electromap.v0`](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0))
+for the APIs of the following data providers.
+
+- [Electricity Maps](https://static.electricitymaps.com/api/docs/index.html)
+- [WattTime](https://docs.watttime.org/)
 
 [![Go Reference](https://pkg.go.dev/badge/gopkg.in/gerald-scharitzer/electromap.v0.svg)](https://pkg.go.dev/gopkg.in/gerald-scharitzer/electromap.v0)
 

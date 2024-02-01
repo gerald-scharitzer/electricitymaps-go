@@ -1,4 +1,4 @@
-package electricitymaps
+package watttime
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	want := ElectricityMaps{name: defaultName}
+	want := WattTime{name: defaultName}
 	got := New()
 	assert.Equal(t, *got, want)
 }

@@ -5,8 +5,10 @@ type ElectricityMaps struct {
 	name string
 }
 
+const defaultName = "Electricity Maps"
+
 func New() *ElectricityMaps {
-	return &ElectricityMaps{name: "Electricity Maps"}
+	return &ElectricityMaps{name: defaultName}
 }
 
 func (o *ElectricityMaps) Name() string {
