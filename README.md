@@ -30,6 +30,16 @@ import (
 
 # Develop 🚀
 
+with the following setup.
+
+1. Git
+2. Go
+3. Node Version Manager
+4. Node and Node Package Manager
+5. OpenAPI Generator
+
+## Cycle
+
  1. Get with `git clone https://github.com/gerald-scharitzer/electromap.git`
  2. Enter with `cd electromap`
  3. Increase version in [doc.go#Version](doc.go#Version)
@@ -53,3 +63,14 @@ and `vn` is the major version number (e.g. v0)
 is implementation-specific and not guaranteed to stay in the language.
 - Use `fmt.Print` instead of `print`, because [`print`](https://pkg.go.dev/builtin@go1.21.6#print)
 is implementation-specific and not guaranteed to stay in the language.
+
+## Providers
+
+Get the WattTime OpenAPI specification from https://docs.watttime.org/openapi.json.
+
+## Tools
+
+Generate Go from OpenAPI specifications with the OpenAPI Generator.
+
+1. Install with `npm install @openapitools/openapi-generator-cli -g`
+2. Generate with `openapi-generator-cli generate -i openapi_spec.yaml -g go -o ./output`

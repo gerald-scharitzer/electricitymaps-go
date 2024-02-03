@@ -1,3 +1,4 @@
+// command line interface for the electromap package
 package main
 
 import (
