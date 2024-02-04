@@ -22,7 +22,7 @@ the binary as command line interface with `electromap`. Get help for that with `
 
 Use the Go API by importing the module.
 
-```
+```go
 import (
     em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
@@ -30,13 +30,17 @@ import (
 
 # Develop 🚀
 
-with the following setup.
+with the following setup
 
-1. Git
-2. Go
-3. Node Version Manager
-4. Node and Node Package Manager
-5. OpenAPI Generator
+- Git
+- Go
+- [Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm)
+    - [Node](https://nodejs.org/) and [Node Package Manager](https://www.npmjs.com/) (`node` and `npm`)
+        - [OpenAPI Generator](https://www.npmjs.com/package/@openapitools/openapi-generator-cli)
+- Java
+    - [OpenAPI Generator](https://www.npmjs.com/package/@openapitools/openapi-generator-cli)
+
+where the hierarchy shows the dependencies with indented dependents.
 
 ## Cycle
 
@@ -72,5 +76,5 @@ Get the WattTime OpenAPI specification from https://docs.watttime.org/openapi.js
 
 Generate Go from OpenAPI specifications with the OpenAPI Generator.
 
-1. Install with `npm install @openapitools/openapi-generator-cli -g`
-2. Generate with `openapi-generator-cli generate -i openapi_spec.yaml -g go -o ./output`
+1. Generate with `openapi-generator-cli generate -i ./watttime/openapi.json -g go -o ./watttime/client`
+2. TODO Publish `powertime` as separate module.
