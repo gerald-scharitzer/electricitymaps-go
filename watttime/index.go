@@ -11,6 +11,7 @@ import (
 const (
 	DefaultRegion             = "CAISO_NORTH"
 	DefaultSignalType         = "co2_moer"
+	DefaultUnits              = "CO2 lbs/MWh"
 	ModelTypeAverage          = "average"
 	ModelTypeBinnedRegression = "binned_regression"
 	ModelTypeHeatrate         = "heatrate"
@@ -39,7 +40,7 @@ type Model struct {
 
 // API metadata
 type Meta struct {
-	// datetime
+	// duration in seconds from the start specified by `Data.PointTime`
 	DataPointPeriodSeconds int `json:"data_point_period_seconds"`
 	Region                 string
 	SignalType             string `json:"signal_type"`
@@ -51,7 +52,6 @@ type Meta struct {
 // The API response is a structure of data and its metadata
 type SignalIndex struct {
 	Data []Data // array of Data
-	// "ok" if the API is fine
 	Meta Meta
 }
 
@@ -59,6 +59,12 @@ type SignalIndex struct {
 //
 // `apiRoot` points to the target of the API call.
 // `nil` calls the API pointed to by `ApiRootDefault`.
+//
+// `region` is the grid region. `nil` defaults to `DefaultRegion`.
+//
+// `signalType` is the signal type. `nil` defaults to `DefaultSignalType`.
+//
+// # TODO Implement parameter types as stringers
 //
 // # TODO add parameter authToken
 //
@@ -73,7 +79,8 @@ func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*Signa
 	}
 
 	if region == nil {
-		return nil, fmt.Errorf("region is required") // TODO is there a separate error type for "must not be nil"?
+		defaultRegion := DefaultRegion
+		region = &defaultRegion
 	}
 
 	if signalType == nil {
