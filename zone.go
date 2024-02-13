@@ -31,8 +31,7 @@ type Zones map[string]Zone
 func GetZones(apiRoot *string) (*Zones, error) {
 
 	if apiRoot == nil { // get default
-		apiRootDefault := ApiRootDefault // get addressable variable
-		apiRoot = &apiRootDefault
+		apiRoot = Addr(ApiRootDefault)
 	}
 
 	resp, err := http.Get(*apiRoot + "v3/zones")
@@ -40,7 +39,7 @@ func GetZones(apiRoot *string) (*Zones, error) {
 		return nil, err
 	}
 
-	content_type := resp.Header.Get("content-type")
+	content_type := resp.Header.Get("content-type") // TODO HTTP constants
 	if content_type != "application/json; charset=utf-8" {
 		return nil, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
 	}

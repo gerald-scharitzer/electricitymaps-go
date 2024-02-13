@@ -7,8 +7,7 @@ import (
 )
 
 func TestGetZones(t *testing.T) {
-	apiRootDefault := ApiRootDefault
-	apiRoots := []*string{nil, &apiRootDefault}
+	apiRoots := []*string{nil, Addr(ApiRootDefault)}
 	for _, apiRoot := range apiRoots {
 		zones, err := GetZones(apiRoot)
 		assert.NilError(t, err)

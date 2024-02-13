@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	em "gopkg.in/gerald-scharitzer/electromap.v0"
 )
 
 const (
@@ -74,18 +76,15 @@ type SignalIndex struct {
 func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*SignalIndex, error) {
 
 	if apiRoot == nil { // get default
-		apiRootDefault := ApiRootDefault // get addressable variable
-		apiRoot = &apiRootDefault
+		apiRoot = em.Addr(ApiRootDefault)
 	}
 
 	if region == nil {
-		defaultRegion := DefaultRegion
-		region = &defaultRegion
+		region = em.Addr(DefaultRegion)
 	}
 
 	if signalType == nil {
-		defaultSignalType := DefaultSignalType
-		signalType = &defaultSignalType
+		signalType = em.Addr(DefaultSignalType)
 	}
 
 	req, err := http.NewRequest(http.MethodGet, *apiRoot+"v3/signal-index", nil) // TODO JoinPath
@@ -103,7 +102,7 @@ func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*Signa
 		return nil, err
 	}
 
-	content_type := resp.Header.Get("content-type")
+	content_type := resp.Header.Get("content-type") // TODO HTTP constants
 	if content_type != "application/json; charset=utf-8" {
 		return nil, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
 	}

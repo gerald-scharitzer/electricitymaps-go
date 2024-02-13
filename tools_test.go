@@ -99,16 +99,16 @@ func TestAddr(t *testing.T) {
 	}
 
 	const c = 42
-	ca := addr(c)
+	ca := Addr(c)
 	assert.Equal(t, *ca, c)
 
-	la := addr(42)
+	la := Addr(42)
 	assert.Equal(t, *la, 42)
 }
 
 func testAddr(t *testing.T, num int, name string, token string, test any) {
 	t.Logf("%2v %-10v %-5v %-10T %#v", num, name, token, test, test)
 	want := &test
-	got := addr(test)
+	got := Addr(test)
 	assert.Equal(t, *got, *want)
 }

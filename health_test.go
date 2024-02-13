@@ -9,8 +9,7 @@ import (
 
 func TestGetHealth(t *testing.T) {
 	want := Health{Monitors: Monitors{State: "ok"}, Status: "ok"}
-	apiRootDefault := ApiRootDefault
-	apiRoots := []*string{nil, &apiRootDefault}
+	apiRoots := []*string{nil, Addr(ApiRootDefault)}
 	for _, apiRoot := range apiRoots {
 		got, err := GetHealth(apiRoot)
 		assert.NilError(t, err)

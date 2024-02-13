@@ -2,7 +2,7 @@ package electromap
 
 // Get the address of a non-addressable value as expression
 //
-//	a := addr(value)
+//	a := Addr(value)
 //
 // instead of multiple statements:
 //
@@ -35,14 +35,14 @@ package electromap
 //	f(&v) // requires declaration of variable v
 //	// f(&42) // invalid operation: cannot take address of 42 (untyped int constant) compiler(UnaddressableOperand)
 //
-// The function `addr` allocates a variable implicitly and returns its address.
+// The function `Addr` allocates a variable implicitly and returns its address.
 //
-//	f(addr(c))
-//	f(addr(42))
-//	f(addr(v)) // is less efficient than f(&v) and points to the same value, but a different variable
+//	f(Addr(c))
+//	f(Addr(42))
+//	f(Addr(v)) // is less efficient than f(&v) and points to the same value, but a different variable
 //
 // The argument is passed by value, so the address of the copy is returned instead of the original argument.
 // The memory is allocated implicitly through pass by value.
-func addr[T any](x T) *T {
+func Addr[T any](x T) *T {
 	return &x
 }
