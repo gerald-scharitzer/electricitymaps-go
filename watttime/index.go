@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	em "gopkg.in/gerald-scharitzer/electromap.v0"
+	tr "gopkg.in/gerald-scharitzer/tecnic.v0/reflect"
 )
 
 const (
@@ -76,15 +76,15 @@ type SignalIndex struct {
 func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*SignalIndex, error) {
 
 	if apiRoot == nil { // get default
-		apiRoot = em.Addr(ApiRootDefault)
+		apiRoot = tr.Addr(ApiRootDefault)
 	}
 
 	if region == nil {
-		region = em.Addr(DefaultRegion)
+		region = tr.Addr(DefaultRegion)
 	}
 
 	if signalType == nil {
-		signalType = em.Addr(DefaultSignalType)
+		signalType = tr.Addr(DefaultSignalType)
 	}
 
 	req, err := http.NewRequest(http.MethodGet, *apiRoot+"v3/signal-index", nil) // TODO JoinPath
@@ -104,7 +104,7 @@ func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*Signa
 
 	content_type := resp.Header.Get("content-type") // TODO HTTP constants
 	if content_type != "application/json; charset=utf-8" {
-		return nil, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
+		return nil, fmt.Errorf("got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
 	}
 
 	defer resp.Body.Close()
@@ -115,6 +115,10 @@ func GetSignalIndex(apiRoot *string, region *string, signalType *string) (*Signa
 
 	health := SignalIndex{}
 	err = json.Unmarshal(body, &health)
+	if err != nil {
+		return nil, err
+	}
+
 	return &health, nil
 
 }

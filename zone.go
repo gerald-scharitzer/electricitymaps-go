@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	tr "gopkg.in/gerald-scharitzer/tecnic.v0/reflect"
 )
 
 // Zones that are countries have a zone name, but not country name.
@@ -31,7 +33,7 @@ type Zones map[string]Zone
 func GetZones(apiRoot *string) (*Zones, error) {
 
 	if apiRoot == nil { // get default
-		apiRoot = Addr(ApiRootDefault)
+		apiRoot = tr.Addr(ApiRootDefault)
 	}
 
 	resp, err := http.Get(*apiRoot + "v3/zones")
@@ -41,7 +43,7 @@ func GetZones(apiRoot *string) (*Zones, error) {
 
 	content_type := resp.Header.Get("content-type") // TODO HTTP constants
 	if content_type != "application/json; charset=utf-8" {
-		return nil, fmt.Errorf("Got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
+		return nil, fmt.Errorf("got content-type %q instead of \"application/json; charset=utf-8\"", content_type)
 	}
 
 	defer resp.Body.Close()
@@ -52,6 +54,10 @@ func GetZones(apiRoot *string) (*Zones, error) {
 
 	zones := Zones{}
 	err = json.Unmarshal(body, &zones)
+	if err != nil {
+		return nil, err
+	}
+
 	return &zones, nil
 
 }

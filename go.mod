@@ -3,6 +3,7 @@ module gopkg.in/gerald-scharitzer/electromap.v0
 go 1.21.1
 
 require (
+	gopkg.in/gerald-scharitzer/tecnic.v0 v0.0.0
 	gotest.tools v2.2.0+incompatible
 	gotest.tools/v3 v3.5.1
 )

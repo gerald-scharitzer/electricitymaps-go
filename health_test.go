@@ -4,12 +4,13 @@ import (
 	"os"
 	"testing"
 
+	tr "gopkg.in/gerald-scharitzer/tecnic.v0/reflect"
 	"gotest.tools/v3/assert"
 )
 
 func TestGetHealth(t *testing.T) {
 	want := Health{Monitors: Monitors{State: "ok"}, Status: "ok"}
-	apiRoots := []*string{nil, Addr(ApiRootDefault)}
+	apiRoots := []*string{nil, tr.Addr(ApiRootDefault)}
 	for _, apiRoot := range apiRoots {
 		got, err := GetHealth(apiRoot)
 		assert.NilError(t, err)

@@ -3,11 +3,12 @@ package electromap
 import (
 	"testing"
 
+	tr "gopkg.in/gerald-scharitzer/tecnic.v0/reflect"
 	"gotest.tools/v3/assert"
 )
 
 func TestGetZones(t *testing.T) {
-	apiRoots := []*string{nil, Addr(ApiRootDefault)}
+	apiRoots := []*string{nil, tr.Addr(ApiRootDefault)}
 	for _, apiRoot := range apiRoots {
 		zones, err := GetZones(apiRoot)
 		assert.NilError(t, err)
