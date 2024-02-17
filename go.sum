@@ -6,6 +6,10 @@ gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/gerald-scharitzer/tecnic.v0 v0.0.0 h1:OEgZsnGPx2JPmCj1jJKe8LTCdvZQqn9NQfNsIay1tAg=
 gopkg.in/gerald-scharitzer/tecnic.v0 v0.0.0/go.mod h1:Oi8qIN/aBEEp60O7DdcVD+vYR/aUSSLazSFZzUXPtV4=
+gopkg.in/gerald-scharitzer/tecnic.v0 v0.1.0-alpha.0 h1:dQOAFWR8ZVk7HGqlM+hr0JYzFgZ4BEb+e20/mBdXobA=
+gopkg.in/gerald-scharitzer/tecnic.v0 v0.1.0-alpha.0/go.mod h1:Oi8qIN/aBEEp60O7DdcVD+vYR/aUSSLazSFZzUXPtV4=
+gopkg.in/gerald-scharitzer/tecnic.v0 v0.1.0 h1:Fa8D51ckLXz/0YMaQCUQY4BExdh53kIVHQ47yUe/u4A=
+gopkg.in/gerald-scharitzer/tecnic.v0 v0.1.0/go.mod h1:Oi8qIN/aBEEp60O7DdcVD+vYR/aUSSLazSFZzUXPtV4=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjfM+P5UIEo=
